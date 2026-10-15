@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bayora Shield | AI Safety Lab</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark">B</div><div><b>Bayora Shield</b><small>AI SAFETY LAB</small></div></div>
+    <div class="nav-label">WORKSPACE</div>
+    <button class="nav active" data-page="overview">▦ <span>Overview</span></button>
+    <button class="nav" data-page="sandbox">⬡ <span>Sandbox Runs</span></button>
+    <button class="nav" data-page="zones">⛨ <span>Trust Zones</span></button>
+    <button class="nav" data-page="audit">≋ <span>Audit Trail</span></button>
+    <button class="nav" data-page="validation">✓ <span>Security Validation</span></button>
+    <div class="sidebar-bottom"><div class="status-dot"></div><div><b>Prototype mode</b><small>Local simulation only</small></div></div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div><span class="crumb">Workspace /</span> <b id="pageTitle">Overview</b></div><div class="top-actions"><span class="pill"><i></i> Demo environment</span><div class="avatar">AT</div></div></header>
+    <section class="page" id="overview">
+      <div class="hero"><div><div class="eyebrow">SECURE AI EVALUATION INFRASTRUCTURE</div><h1>Test boldly.<br><span>Contain the risk.</span></h1><p>Run Red Team, Client Model, and Blue Team workloads in separated trust zones with visible controls and verifiable evidence.</p><button class="primary" id="launchRun">＋ Launch simulated run</button></div><div class="hero-art"><div class="orbit orbit1"></div><div class="orbit orbit2"></div><div class="shield">✦</div><div class="node n1">RED TEAM</div><div class="node n2">CLIENT LLM</div><div class="node n3">BLUE TEAM</div></div></div>
+      <div class="stats"><div class="stat"><span>Active sandboxes</span><b id="activeCount">03</b><small class="good">● Isolated environments</small></div><div class="stat"><span>Policy checks</span><b id="policyCount">128</b><small class="good">↑ Simulated checks</small></div><div class="stat"><span>Leakage alerts</span><b id="leakCount">00</b><small>Across current demo run</small></div><div class="stat"><span>Evidence integrity</span><b>100%</b><small class="good">● Hash chain demo</small></div></div>
+      <div class="section-head"><div><h2>Evaluation pipeline</h2><p>How a test moves through Bayora Shield</p></div><span class="tag">LIVE DEMO FLOW</span></div>
+      <div class="pipeline">
+        <div class="pipe-step"><div class="step-icon blue">01</div><b>Configure</b><small>Policies & limits</small></div><div class="arrow">→</div>
+        <div class="pipe-step"><div class="step-icon violet">02</div><b>Isolate</b><small>Sandbox + zones</small></div><div class="arrow">→</div>
+        <div class="pipe-step"><div class="step-icon orange">03</div><b>Execute</b><small>Adversarial prompts</small></div><div class="arrow">→</div>
+        <div class="pipe-step"><div class="step-icon green">04</div><b>Verify</b><small>Leakage & access</small></div><div class="arrow">→</div>
+        <div class="pipe-step"><div class="step-icon blue">05</div><b>Report</b><small>Evidence export</small></div>
+      </div>
+      <div class="grid-two"><div class="panel"><div class="panel-head"><div><h3>Trust-zone status</h3><p>Logical separation overview</p></div><button class="text-btn" data-goto="zones">View zones ↗</button></div><div class="zone-list"><div class="zone-row"><span class="zone-icon red">R</span><div class="zone-info"><b>Red Team</b><small>Adversarial test runner</small></div><span class="badge green-badge">Isolated</span></div><div class="zone-row"><span class="zone-icon purple">C</span><div class="zone-info"><b>Client LLM</b><small>Model endpoint + session context</small></div><span class="badge green-badge">Isolated</span></div><div class="zone-row"><span class="zone-icon blue-bg">B</span><div class="zone-info"><b>Blue Team</b><small>Monitoring + policy enforcement</small></div><span class="badge green-badge">Isolated</span></div></div></div>
+      <div class="panel"><div class="panel-head"><div><h3>Recent activity</h3><p>Events generated in this browser session</p></div><button class="text-btn" data-goto="audit">Full audit trail ↗</button></div><div id="recentEvents" class="events"></div></div></div>
+    </section>
+    <section class="page hidden" id="sandbox">
+      <div class="page-intro"><div class="eyebrow">EXECUTION CONTROL</div><h1>Sandbox runs</h1><p>Configure a demo evaluation and simulate guardrail outcomes. No real model or infrastructure is contacted.</p></div>
+      <div class="grid-two"><div class="panel"><h3>New evaluation run</h3><label>Scenario name<input id="scenario" value="Cross-session leakage check"></label><label>Test profile<select id="profile"><option>Session isolation</option><option>Network boundary check</option><option>Resource exhaustion guard</option><option>Audit integrity check</option></select></label><label>Resource tier<select id="tier"><option>Standard · 2 CPU / 4 GB</option><option>Constrained · 1 CPU / 2 GB</option><option>Stress · 4 CPU / 8 GB</option></select></label><div class="toggle-row"><div><b>Default-deny network policy</b><small>Block unapproved egress</small></div><input type="checkbox" id="deny" checked></div><div class="toggle-row"><div><b>Session context isolation</b><small>Keep test contexts separate</small></div><input type="checkbox" id="session" checked></div><button class="primary full" id="runTest">▶ Run simulation</button></div><div class="panel result-panel"><div class="panel-head"><div><h3>Run result</h3><p>Latest simulated outcome</p></div><span class="tag" id="runState">READY</span></div><div id="runResult" class="empty-state"><div class="empty-icon">◇</div><b>No run yet</b><p>Choose a profile and run a simulation to populate findings and evidence.</p></div></div></div>
+    </section>
+    <section class="page hidden" id="zones">
+      <div class="page-intro"><div class="eyebrow">BOUNDARY DESIGN</div><h1>Trust zones</h1><p>Each role receives its own logical boundary, permissions, and evidence scope.</p></div>
+      <div class="architecture"><div class="zone-card red-card"><div class="zone-icon red">R</div><h3>Red Team</h3><p>Adversarial prompt generation and attack scenarios.</p><ul><li>Scoped test credentials</li><li>Rate-limited requests</li><li>No direct data-plane access</li></ul><span class="badge">TESTER ROLE</span></div><div class="boundary">Policy gateway<br><b>RBAC · Default deny</b></div><div class="zone-card purple-card"><div class="zone-icon purple">C</div><h3>Client LLM</h3><p>Target model sessions and controlled inference endpoint.</p><ul><li>Per-run session context</li><li>Cache isolation target</li><li>Resource quotas</li></ul><span class="badge">MODEL ZONE</span></div><div class="boundary">Telemetry bus<br><b>Allow-listed events</b></div><div class="zone-card blue-card"><div class="zone-icon blue-bg">B</div><h3>Blue Team</h3><p>Policy monitoring, validation, and incident review.</p><ul><li>Read-only evidence access</li><li>Alert triage</li><li>Signed report export</li></ul><span class="badge">DEFENDER ROLE</span></div></div>
+      <div class="notice"><b>Prototype boundary:</b> These are conceptual trust zones shown for demonstration. Actual isolation requires implementation and verification using OS/container controls, network policy, IAM, and model-serving infrastructure.</div>
+    </section>
+    <section class="page hidden" id="audit">
+      <div class="page-intro"><div class="eyebrow">EVIDENCE & TRACEABILITY</div><h1>Audit trail</h1><p>Demo events with a simple chained digest to illustrate tamper-evident logging.</p></div>
+      <div class="audit-toolbar"><div class="searchbox">⌕ <input id="eventSearch" placeholder="Filter events…"></div><button class="secondary" id="exportCsv">↓ Export CSV</button><button class="secondary" id="addEvent">＋ Add demo event</button></div>
+      <div class="panel table-panel"><table><thead><tr><th>TIME</th><th>EVENT</th><th>ZONE</th><th>STATUS</th><th>CHAIN DIGEST</th></tr></thead><tbody id="auditRows"></tbody></table></div>
+      <div class="hash-note"><span class="hash-icon">#</span><div><b>How the chain works</b><p>Each row includes a demo digest derived from the event and previous digest. This browser prototype is illustrative, not a cryptographic audit system or proof of tamper resistance.</p></div></div>
+    </section>
+    <section class="page hidden" id="validation">
+      <div class="page-intro"><div class="eyebrow">AUTOMATED CHECKS</div><h1>Security validation</h1><p>Run illustrative checks to see how a validation report could summarize control coverage.</p></div>
+      <div class="panel"><div class="panel-head"><div><h3>Control checklist</h3><p>Simulated outcomes only — no infrastructure is tested</p></div><button class="primary" id="validateAll">Run all checks</button></div><div id="checks" class="checks"></div><div class="validation-footer"><div><span>Coverage shown</span><b id="coverage">0 / 6</b></div><div class="progress"><span id="progressBar"></span></div></div></div>
+    </section>
+    <footer>Bayora Shield · Hackathon prototype <span>Concept demonstration · Not production security tooling</span></footer>
+  </main>
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+</body></html>
